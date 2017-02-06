@@ -1,5 +1,5 @@
 <img src="https://github.com/austindrenski/ExPEM/blob/master/Logos/ExPEM_logo_transparent.png" width="400">
-![](https://github.com/austindrenski/ExPEM/blob/master/Logos/ExPEM_logo_transparent.png)
+
 # The Extensible Partial Equilibrium Modeling Project
 
 The Extensible Partial Equilibrium Modeling (ExPEM) project aims to create a simple to use, easy to extend, and powerful application for partial equilibrium analysis. 
