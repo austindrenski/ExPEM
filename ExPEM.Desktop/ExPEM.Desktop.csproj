@@ -35,7 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Favicon_Icon.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\ExPEM_icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -105,13 +105,7 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="ExPEM.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Favicon_Icon.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Favicon_Icon.ico" />
+    <Resource Include="Resources\ExPEM_icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
