@@ -1,4 +1,4 @@
-![](https://github.com/austindrenski/ExPEM/blob/master/Logos/ExPEM_wide.jpg)
+![](Logos/ExPEM_wide.jpg)
 
 # The Extensible Partial Equilibrium Modeling Project
 
