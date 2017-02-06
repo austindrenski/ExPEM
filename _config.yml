@@ -1,2 +1,4 @@
 theme: jekyll-theme-cayman
 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^.]+)\.(jpg|jpeg|png|bmp|gif)$ posts/$1.$2 [NC,L]
