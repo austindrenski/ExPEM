@@ -1,4 +1,4 @@
-![](Logos/ExPEM_wide.jpg)
+![ExPEM logo](Logos/ExPEM_wide.jpg)
 
 # The Extensible Partial Equilibrium Modeling Project
 
