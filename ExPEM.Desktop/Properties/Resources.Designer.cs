@@ -59,15 +59,5 @@ namespace ExPEM.Desktop.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap ExPEM {
-            get {
-                object obj = ResourceManager.GetObject("ExPEM", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
     }
 }

@@ -100,9 +100,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\ExPEM.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    <Content Include="Resources\ExPEM.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\ExPEM_icon.ico" />
