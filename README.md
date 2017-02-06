@@ -1,4 +1,4 @@
-<img src="https://github.com/austindrenski/ExPEM/blob/master/Logos/ExPEM_logo_transparent.png" width="400">
+<img src="https://github.com/austindrenski/ExPEM/blob/master/Logos/ExPEM_wide.jpg">
 
 # The Extensible Partial Equilibrium Modeling Project
 
