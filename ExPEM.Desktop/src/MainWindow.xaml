@@ -6,7 +6,8 @@
         mc:Ignorable="d"
         Icon="/ExPEM.Desktop;component/Resources/ExPEM_icon.ico"
         Title="MainWindow" Height="350" Width="700" UseLayoutRounding="True" SnapsToDevicePixels="True">
-    <Grid x:Name="MainGrid">
-        <!--<DataGrid x:Name="Grid" RowDetailsTemplate="{StaticResource ExpandableGrid}"/>-->
+    <Grid>
+        <DataGrid x:Name="RootDataGrid" 
+                  RowDetailsTemplate="{StaticResource ExpandableGrid}"/>
     </Grid>
 </Window>
