@@ -1,8 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Xml;
 using System.Xml.Linq;
 using AD.IO;
 using AD.PartialEquilibriumApi;
@@ -91,41 +89,6 @@ namespace ExPEM.Desktop
             model.CalculateAllFinalMarketShares();
 
             return model;
-
-            // Print the results.
-            Console.WriteLine("-----------------------------------------------------------------------------------------");
-            XmlWriterSettings settings = new XmlWriterSettings
-            {
-                Encoding = Encoding.UTF8,
-                Indent = true,
-                NewLineOnAttributes = true,
-                IndentChars = "    "
-            };
-            using (XmlWriter writer = XmlWriter.Create(Console.Out, settings))
-            {
-                model.WriteTo(writer);
-            }
-            Console.WriteLine();
-            Console.WriteLine("-----------------------------------------------------------------------------------------");
-            Console.ReadLine();
-        }
-
-        [UsedImplicitly]
-        public static XElement CreateModelFromInteractive(DelimitedFilePath dataFile)
-        {
-            // Define the product market.
-            XElement model = new XElement("Retail").DefineAttributeData(dataFile, 0);
-
-            // Define the supplier markets and the initial prices of purchase from those markets.
-            XElement supplier1 = new XElement("Supplier1").DefineAttributeData(dataFile, 1);
-            XElement supplier2 = new XElement("Supplier2").DefineAttributeData(dataFile, 2);
-            XElement supplier3 = new XElement("Supplier3").DefineAttributeData(dataFile, 3);
-            XElement supplier4 = new XElement("Supplier4").DefineAttributeData(dataFile, 4);
-
-            // Add the supplier markets to the product market. This has the effect of splitting the product market into product supplied by the supplier markets.
-            model.Add(supplier1, supplier2, supplier3, supplier4);
-
-            return model;
         }
 
         [UsedImplicitly]
@@ -143,10 +106,26 @@ namespace ExPEM.Desktop
             {
                 writer.WriteLine(
                     @"<Retail>
-                        <Supplier1 />
-                        <Supplier2 />
-                        <Supplier3 />
-                        <Supplier4 />
+                        <Supplier1>
+                            <Input1 />
+                            <Input2 />
+                            <Input3 />
+                        </Supplier1>
+                        <Supplier2>
+                            <Input1 />
+                            <Input2 />
+                            <Input3 />
+                        </Supplier2>
+                        <Supplier3>
+                            <Input1 />
+                            <Input2 />
+                            <Input3 />
+                        </Supplier3>
+                        <Supplier4>
+                            <Input1 />
+                            <Input2 />
+                            <Input3 />
+                        </Supplier4>
                       </Retail>");
             }
             return new XmlFilePath(xml);
@@ -159,11 +138,40 @@ namespace ExPEM.Desktop
             using (StreamWriter writer = new StreamWriter(csv))
             {
                 writer.WriteLine("ElasticityOfSubstitution,ElasticityOfSupply,ElasticityOfDemand,InitialPrice,InitialMarketShare,Shock");
+                // Root
                 writer.WriteLine("4,5,-1,1.0,1.00,0.00");
-                writer.WriteLine("4,5,-1,1.0,0.25,0.00");
-                writer.WriteLine("4,5,-1,1.0,0.25,0.00");
-                writer.WriteLine("4,5,-1,1.0,0.25,0.05");
-                writer.WriteLine("4,5,-1,1.0,0.25,0.00");
+                    // Supplier1
+                    writer.WriteLine("4,5,-1,1.0,0.25,0.00");
+                        // Input1
+                        writer.WriteLine("4,5,-1,1.0,0.25,0.00");
+                        // Input2
+                        writer.WriteLine("4,5,-1,1.0,0.25,0.00");
+                        // Input3
+                        writer.WriteLine("4,5,-1,1.0,0.25,0.00");
+                    // Supplier2
+                    writer.WriteLine("4,5,-1,1.0,0.25,0.00");
+                        // Input1
+                        writer.WriteLine("4,5,-1,1.0,0.25,0.00");
+                        // Input2
+                        writer.WriteLine("4,5,-1,1.0,0.25,0.00");
+                        // Input3
+                        writer.WriteLine("4,5,-1,1.0,0.25,0.00");
+                    // Supplier3
+                    writer.WriteLine("4,5,-1,1.0,0.25,0.05");
+                        // Input1
+                        writer.WriteLine("4,5,-1,1.0,0.25,0.00");
+                        // Input2
+                        writer.WriteLine("4,5,-1,1.0,0.25,0.00");
+                        // Input3
+                        writer.WriteLine("4,5,-1,1.0,0.25,0.00");
+                    // Supplier4
+                    writer.WriteLine("4,5,-1,1.0,0.25,0.00");
+                        // Input1
+                        writer.WriteLine("4,5,-1,1.0,0.25,0.00");
+                        // Input2
+                        writer.WriteLine("4,5,-1,1.0,0.25,0.00");
+                        // Input3
+                        writer.WriteLine("4,5,-1,1.0,0.25,0.00");
             }
             return new DelimitedFilePath(csv, ',');
         }
