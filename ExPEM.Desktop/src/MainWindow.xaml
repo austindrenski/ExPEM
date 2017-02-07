@@ -6,13 +6,7 @@
         mc:Ignorable="d"
         Icon="/ExPEM.Desktop;component/Resources/ExPEM_icon.ico"
         Title="MainWindow" Height="350" Width="700" UseLayoutRounding="True" SnapsToDevicePixels="True">
-    <Grid>
-        <DataGrid x:Name="Grid" AutoGenerateColumns="False" Background="LightGray" AlternatingRowBackground="AliceBlue" HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray">
-            <DataGrid.RowDetailsTemplate>
-                <DataTemplate>
-                    <DataGrid x:Name="SubGrid" AutoGenerateColumns="False" Background="LightGray" AlternatingRowBackground="AliceBlue" HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray"/>
-                </DataTemplate>
-            </DataGrid.RowDetailsTemplate>
-        </DataGrid>
+    <Grid x:Name="MainGrid">
+        <!--<DataGrid x:Name="Grid" RowDetailsTemplate="{StaticResource ExpandableGrid}"/>-->
     </Grid>
 </Window>

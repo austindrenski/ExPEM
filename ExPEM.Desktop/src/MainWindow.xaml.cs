@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,7 +17,7 @@ namespace ExPEM.Desktop
         {
             InitializeComponent();
 
-            XDocument document = XDocument.Parse(
+            XElement model = XElement.Parse(
                 @"<Root>
                       <A a=""test1"" b=""test2"">
                           <B a=""test1"" b=""test2""/>
@@ -29,78 +30,77 @@ namespace ExPEM.Desktop
                   </Root>"
                 );
 
-            BindXDocumentToDataGrid(Grid, document);
+            model = Example.Example1();
 
+            BindXDocumentToDataGrid(model);
         }
 
         /// <summary>
         /// Binds an XDocument to the DataGrid.
         /// </summary>
-        /// <param name="grid">The DataGrid to which the XDocument is bound.</param>
-        /// <param name="document">The XDocument to bind to the DataGrid.</param>
-        public static void BindXDocumentToDataGrid(DataGrid grid, [NotNull] XDocument document)
+        /// <param name="grid">The DataGrid to which the model is bound.</param>
+        /// <param name="model">The model element to bind to the DataGrid.</param>
+        public void BindXDocumentToDataGrid([NotNull] XElement model)
         {
-            if (document.Root == null)
-            {
-                document.Add(new XElement("root"));
-            }
-            if (!document.Root?.HasElements ?? false)
-            {
-                document.Root?.Add(new XElement("record"));
-            }
-            if (!document.Root?.Elements().First()?.HasElements ?? false)
-            {
-                document.Root?.Elements().First()?.Add(new XElement("errorMessage", "No records found. For further information, contact Austin.Drenski@usitc.gov."));
-            }
+            DataGrid grid = new DataGrid() {RowDetailsTemplate = new DataTemplate("{StaticResource ExpandableGrid}")};
+            MainGrid.Children.Add(grid);
+
             DataGridTextColumn name = new DataGridTextColumn
             {
                 Header = "Market",
                 Binding = new Binding("Name")
             };
             grid.Columns.Add(name);
-            foreach (XAttribute property in document.Root?.Elements().FirstOrDefault()?.Attributes() ?? Enumerable.Empty<XAttribute>())
+            foreach (XName property in model.Attributes().Select(x => x.Name).Distinct())
             {
                 DataGridTextColumn column = new DataGridTextColumn
                 {
-                    Header = property.Name,
-                    Binding =  new Binding($"Attribute[{property.Name}].Value")
+                    Header = property,
+                    Binding =  new Binding($"Attribute[{property}].Value")
                 };
                 grid.Columns.Add(column);
             }
-            foreach (XElement element in document.Root?.Elements() ?? Enumerable.Empty<XElement>())
-            {
-                grid.Items.Add(element);
-            }
+            grid.Items.Add(model);
             grid.RowDetailsVisibilityChanged += LoadRowDetails;
         }
 
-
-        private static void LoadRowDetails(object sender, DataGridRowDetailsEventArgs e)
+        private static void BuildGrid(DataGrid grid, XElement element)
         {
-            DataGrid subGrid = e.DetailsElement.FindName("SubGrid") as DataGrid;
-            if (subGrid == null)
-            {
-                return;
-            }
             DataGridTextColumn name = new DataGridTextColumn
             {
                 Header = "Market",
                 Binding = new Binding("Name")
             };
-            subGrid.Columns.Add(name);
-            foreach (XAttribute property in (e.Row.Item as XElement).Elements().First().Attributes())
+            grid.Columns.Add(name);
+            foreach (XName property in element.Elements().Attributes().Select(x => x.Name).Distinct())
             {
                 DataGridTextColumn column = new DataGridTextColumn
                 {
-                    Header = property.Name,
-                    Binding = new Binding($"Attribute[{property.Name}].Value")
+                    Header = property,
+                    Binding = new Binding($"Attribute[{property}].Value")
                 };
-                subGrid.Columns.Add(column);
+                grid.Columns.Add(column);
             }
-            foreach (XElement element in (e.Row.Item as XElement).Elements())
+            foreach (XElement item in element.Elements())
             {
-                subGrid.Items.Add(element);
+                grid.Items.Add(item);
             }
+            grid.RowDetailsVisibilityChanged += LoadRowDetails;
+        }
+
+        private static void LoadRowDetails(object sender, DataGridRowDetailsEventArgs e)
+        {
+            XElement element = (XElement) e.Row.Item;
+            if (!element.HasElements)
+            {
+                return;
+            }
+            DataGrid grid = e.DetailsElement as DataGrid;
+            if (grid == null)
+            {
+                return;
+            }
+            BuildGrid(grid, element);
         }
     }
 }
