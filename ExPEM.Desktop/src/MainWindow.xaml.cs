@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Xml.Linq;
@@ -38,7 +37,7 @@ namespace ExPEM.Desktop
         /// </summary>
         /// <param name="grid">The DataGrid to which the XDocument is bound.</param>
         /// <param name="document">The XDocument to bind to the DataGrid.</param>
-        public static void BindXDocumentToDataGrid(DataGrid grid, [NotNull] XDocument document)
+        private static void BindXDocumentToDataGrid(DataGrid grid, [NotNull] XDocument document)
         {
             if (document.Root == null)
             {
@@ -97,7 +96,7 @@ namespace ExPEM.Desktop
                 };
                 subGrid.Columns.Add(column);
             }
-            foreach (XElement element in (e.Row.Item as XElement).Elements())
+            foreach (XElement element in ((XElement)e.Row.Item).Elements())
             {
                 subGrid.Items.Add(element);
             }
