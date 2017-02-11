@@ -3,6 +3,32 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="src/MainWindow.xaml">
     <Application.Resources>
-         
+    
+        <Style TargetType="DataGrid">
+            <Setter Property="AlternatingRowBackground" Value="AliceBlue" />
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="Background" Value="LightGray" />
+            <Setter Property="CanUserReorderColumns" Value="True" />
+            <Setter Property="CanUserResizeColumns" Value="True" />
+            <Setter Property="CanUserSortColumns" Value="True" />
+            <Setter Property="HeadersVisibility" Value="Column" />
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalGridLinesBrush" Value="LightGray"/>
+            <Setter Property="HorizontalScrollBarVisibility" Value="Auto" />
+            <Setter Property="RowDetailsVisibilityMode" Value="VisibleWhenSelected" />
+            <Setter Property="SelectionMode" Value="Extended" />
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
+        </Style>
+        
+        <DataTemplate x:Key="ExpandableGrid" DataType="{x:Type DataGrid}">
+            <DataGrid>
+                <DataGrid.RowDetailsTemplate>
+                    <DataTemplate>
+                        <DataGrid/>
+                    </DataTemplate>
+                </DataGrid.RowDetailsTemplate>
+            </DataGrid>
+        </DataTemplate>
     </Application.Resources>
 </Application>
