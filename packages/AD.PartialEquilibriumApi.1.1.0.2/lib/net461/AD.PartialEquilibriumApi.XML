@@ -15,6 +15,49 @@
             </summary>
             <returns>The solution that produces the minimum value.</returns>
         </member>
+        <member name="T:AD.PartialEquilibriumApi.MinimizeParallelExtensions">
+            <summary>
+            Extension methods to run <see cref="T:AD.PartialEquilibriumApi.Simplex"/> operations in parallel.
+            </summary>
+        </member>
+        <member name="M:AD.PartialEquilibriumApi.MinimizeParallelExtensions.Minimize(AD.PartialEquilibriumApi.Simplex,System.Int32)">
+            <summary>
+            Solves for the minimum value solution in parallel loops.
+            </summary>
+            <returns>The solution that produces the minimum value.</returns>
+        </member>
+        <member name="T:AD.PartialEquilibriumApi.RandomExtensions">
+            <summary>
+            Extensions methods to generate random solutions.
+            </summary>
+        </member>
+        <member name="M:AD.PartialEquilibriumApi.RandomExtensions.Random(AD.PartialEquilibriumApi.Simplex)">
+            <summary>
+            Calculates a random solution. 
+            </summary>
+            <param name="simplex">The source <see cref="T:AD.PartialEquilibriumApi.Simplex"/>.</param>
+            <returns>The random solution.</returns>
+        </member>
+        <member name="T:AD.PartialEquilibriumApi.ChartFactory">
+            <summary>
+            Factory class to create organizational charts using the Google Charts API.
+            </summary>
+        </member>
+        <member name="M:AD.PartialEquilibriumApi.ChartFactory.CreateOrganizationalChart(System.Xml.Linq.XElement)">
+            <summary>
+            Creates an HTML document representing an organziational chart representation of the model.
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AD.PartialEquilibriumApi.ChartFactory.CreateModelFromFile(System.Xml.Linq.XElement,AD.IO.HtmlFilePath)">
+            <summary>
+            
+            </summary>
+            <param name="model"></param>
+            <param name="chartOutputPath"></param>
+            <returns></returns>
+        </member>
         <member name="T:AD.PartialEquilibriumApi.ConsumerPriceExtensions">
             <summary>
             Extension methods to access the ConsumerPrice attribute.
@@ -27,34 +70,12 @@
             <param name="market">An <see cref="T:System.Xml.Linq.XElement"/> describing a market.</param>
             <returns>The value set by the user to the "ConsumerPrice" attribute.</returns>
         </member>
-        <member name="M:AD.PartialEquilibriumApi.ConsumerPriceExtensions.ConsumerPrice(System.Xml.Linq.XElement,System.Double)">
-            <summary>
-            Sets the value of the ConsumerPrice attribute.
-            </summary>
-            <param name="market">An <see cref="T:System.Xml.Linq.XElement"/> describing a market.</param>
-            <param name="value">The value to which the ConsumerPrice attribute is set.</param>
-        </member>
-        <member name="M:AD.PartialEquilibriumApi.ConsumerPriceExtensions.ConsumerPrice(System.Xml.Linq.XElement,System.Func{System.Xml.Linq.XElement,System.Double})">
-            <summary>
-            Sets the value of the ConsumerPrice attribute.
-            </summary>
-            <param name="market">An <see cref="T:System.Xml.Linq.XElement"/> describing a market.</param>
-            <param name="value">The value to which the ConsumerPrice attribute is set.</param>
-        </member>
         <member name="M:AD.PartialEquilibriumApi.ConsumerPriceExtensions.SetConsumerPrices(System.Xml.Linq.XElement,System.Double[])">
             <summary>
             Sets the values of the ConsumerPrice attributes in provided an array of values in document-order.
             </summary>
-            <param name="market">An <see cref="T:System.Xml.Linq.XElement"/> describing a market.</param>
+            <param name="model">An <see cref="T:System.Xml.Linq.XElement"/> describing a model.</param>
             <param name="values">The values to which the ConsumerPrice attributes are set.</param>
-        </member>
-        <member name="M:AD.PartialEquilibriumApi.ConsumerPriceExtensions.SetConsumerPrices(System.Xml.Linq.XElement,System.Double[],System.Boolean[])">
-            <summary>
-            Sets the values of the ConsumerPrice attributes in provided an array of values in document-order.
-            </summary>
-            <param name="market">An <see cref="T:System.Xml.Linq.XElement"/> describing a market.</param>
-            <param name="values">The values to which the ConsumerPrice attributes are set.</param>
-            <param name="variable">True if the price at this index is variable.</param>
         </member>
         <member name="T:AD.PartialEquilibriumApi.ElasticityOfDemandExtensions">
             <summary>
@@ -106,24 +127,30 @@
             <param name="market">An <see cref="T:System.Xml.Linq.XElement"/> describing a market.</param>
             <returns>The value set by the user to the FinalMarketShare attribute.</returns>
         </member>
-        <member name="M:AD.PartialEquilibriumApi.FinalMarketShareExtensions.FinalMarketShare(System.Xml.Linq.XElement,System.Double)">
+        <member name="M:AD.PartialEquilibriumApi.FinalMarketShareExtensions.CalculateFinalMarketShares(System.Xml.Linq.XElement)">
             <summary>
-            Sets the value of the FinalMarketShare attribute.
+            Calculates the market share on this and descendant <see cref="T:System.Xml.Linq.XElement"/> objects in reverse document order.
             </summary>
-            <param name="market">An <see cref="T:System.Xml.Linq.XElement"/> describing a market.</param>
-            <param name="value">The value to which the FinalMarketShare attribute is set.</param>
+            <param name="model">An <see cref="T:System.Xml.Linq.XElement"/> describing the model.</param>
+            <returns>A reference to the existing <see cref="T:System.Xml.Linq.XElement"/>. This is returned for use with fluent syntax calls.</returns>
         </member>
-        <member name="M:AD.PartialEquilibriumApi.FinalMarketShareExtensions.CalculateFinalMarketShare(System.Xml.Linq.XElement)">
+        <member name="T:AD.PartialEquilibriumApi.IsVariableExtensions">
             <summary>
-            Calculates the market share based on current information.
+            Extension methods to mark <see cref="T:System.Xml.Linq.XElement"/> objects as variables.
             </summary>
-            <param name="market">An <see cref="T:System.Xml.Linq.XElement"/> describing a market.</param>
         </member>
-        <member name="M:AD.PartialEquilibriumApi.FinalMarketShareExtensions.CalculateAllFinalMarketShares(System.Xml.Linq.XElement)">
+        <member name="M:AD.PartialEquilibriumApi.IsVariableExtensions.IsVariable(System.Xml.Linq.XElement)">
             <summary>
-            Calculates the market share based on current information.
+            Returns true if this element is marked as a variable.
             </summary>
-            <param name="market">An <see cref="T:System.Xml.Linq.XElement"/> describing a market.</param>
+            <param name="element">The element to check.</param>
+        </member>
+        <member name="M:AD.PartialEquilibriumApi.IsVariableExtensions.SetIsVariable(System.Xml.Linq.XElement,System.Xml.Linq.XName[])">
+            <summary>
+            Marks the markets in the model as variables if the market name is contained in the value array.
+            </summary>
+            <param name="model">The model to search.</param>
+            <param name="value">The names of the markets to be marked as variables.</param>
         </member>
         <member name="T:AD.PartialEquilibriumApi.CalculateMarketEquilibriumExtensions">
             <summary>
@@ -137,15 +164,9 @@
             <param name="element">An <see cref="T:System.Xml.Linq.XElement"/> describing a market.</param>
             <returns>The value of the MarketEquilibrium attribute.</returns>
         </member>
-        <member name="M:AD.PartialEquilibriumApi.CalculateMarketEquilibriumExtensions.CalculateRootMarketEquilibrium(System.Xml.Linq.XElement)">
-            <summary>
-            Sets the MarketEquilibrium attribute. 
-            </summary>
-            <returns>A reference to the existing <see cref="T:System.Xml.Linq.XElement"/>. This is returned for use with fluent syntax calls.</returns>
-        </member>
         <member name="M:AD.PartialEquilibriumApi.CalculateMarketEquilibriumExtensions.CalculateMarketEquilibrium(System.Xml.Linq.XElement)">
             <summary>
-            Sets the MarketEquilibrium attribute. 
+            Sets the MarketEquilibrium attribute on descendant <see cref="T:System.Xml.Linq.XElement"/> objects in reverse document order.
             Result = (producerPrice ^ elasticityOfSupply) - [(consumerConsumerPriceIndex ^ (elasticityOfSubstitution + elasticityOfDemand)) / (consumerPrice ^ elasticityOfSubstitution)]
             </summary>
             <returns>A reference to the existing <see cref="T:System.Xml.Linq.XElement"/>. This is returned for use with fluent syntax calls.</returns>
@@ -234,12 +255,13 @@
             Extension method to calculate the centroid solution for a <see cref="T:AD.PartialEquilibriumApi.Simplex"/>.
             </summary>
         </member>
-        <member name="M:AD.PartialEquilibriumApi.CentroidExtension.Centroid(AD.PartialEquilibriumApi.Simplex)">
+        <member name="M:AD.PartialEquilibriumApi.CentroidExtension.Centroid(AD.PartialEquilibriumApi.Simplex,System.Int32)">
             <summary>
-            Calculates the centroid solution. For a simplex with three vertices, the centroid solution is found where 
-            the line from the worst vertex to its mirror passes through the line formed by the remaining vertices.
+            Calculates the centroid solution. For a simplex with three vertices, the centroid solution is found along
+            the line from the worst vertex to its mirror across the plane of the remaining vertices.
             </summary>
             <param name="simplex">The source <see cref="T:AD.PartialEquilibriumApi.Simplex"/>.</param>
+            <param name="index">The index of the solution to exclude when calculating the centroid.</param>
             <returns>The centroid solution.</returns>
         </member>
         <member name="T:AD.PartialEquilibriumApi.ContractExtensions">
@@ -263,23 +285,7 @@
         </member>
         <member name="M:AD.PartialEquilibriumApi.EnforceBoundsExtensions.EnforceBounds(System.Double[],AD.PartialEquilibriumApi.Simplex)">
             <summary>
-            Enforces bounds as: lower &lt;= x &lt;= upper
-            </summary>
-            <param name="vector">The vector to enforce.</param>
-            <param name="simplex">The <see cref="T:AD.PartialEquilibriumApi.Simplex"/> for which to enforce boundary constraints.</param>
-            <returns></returns>
-        </member>
-        <member name="M:AD.PartialEquilibriumApi.EnforceBoundsExtensions.EnforceStrictLowerBounds(System.Double[],AD.PartialEquilibriumApi.Simplex)">
-            <summary>
-            Enforces bounds as: lower &lt; x &lt;= upper
-            </summary>
-            <param name="vector">The vector to enforce.</param>
-            <param name="simplex">The <see cref="T:AD.PartialEquilibriumApi.Simplex"/> for which to enforce boundary constraints.</param>
-            <returns></returns>
-        </member>
-        <member name="M:AD.PartialEquilibriumApi.EnforceBoundsExtensions.EnforceStrictUpperBounds(System.Double[],AD.PartialEquilibriumApi.Simplex)">
-            <summary>
-            Enforces bounds as: lower &lt;= x &lt; upper
+            Enforces bounds as: lower &lt;= x &lt;= upper. 
             </summary>
             <param name="vector">The vector to enforce.</param>
             <param name="simplex">The <see cref="T:AD.PartialEquilibriumApi.Simplex"/> for which to enforce boundary constraints.</param>
@@ -304,13 +310,14 @@
             Extension methods to calculate the reflected solution for a <see cref="T:AD.PartialEquilibriumApi.Simplex"/>.
             </summary>
         </member>
-        <member name="M:AD.PartialEquilibriumApi.ReflectExtension.Reflect(AD.PartialEquilibriumApi.Simplex,AD.PartialEquilibriumApi.Solution)">
+        <member name="M:AD.PartialEquilibriumApi.ReflectExtension.Reflect(AD.PartialEquilibriumApi.Simplex,AD.PartialEquilibriumApi.Solution,System.Int32)">
             <summary>
             Calculates the reflected solution. For a simplex with three vertices, the reflected solution 
             is found by mirroring the worst vertex through the plane of the remaining vertices.
             </summary>
             <param name="simplex">The source <see cref="T:AD.PartialEquilibriumApi.Simplex"/>.</param>
             <param name="centroid">The centroid calculated for this simplex.</param>
+            <param name="index">The index of the point to be reflected.</param>
             <returns>The reflected solution.</returns>
         </member>
         <member name="T:AD.PartialEquilibriumApi.SwapExtensions">
@@ -333,7 +340,7 @@
         </member>
         <member name="M:AD.PartialEquilibriumApi.ShrinkExtensions.Shrink(AD.PartialEquilibriumApi.Simplex)">
             <summary>
-            Moves each vertex halfway from its current position to the position of the best vertex.
+            Moves each vertex from its current position to the position of the best vertex.
             </summary>
             <param name="simplex">The source <see cref="T:AD.PartialEquilibriumApi.Simplex"/>.</param>
         </member>
@@ -342,29 +349,40 @@
             This class implements a Nelder-Mead style simplex algorithm to minimize an objective function.
             </summary>
         </member>
+        <member name="F:AD.PartialEquilibriumApi.Simplex.Reflection">
+            <summary>
+            The alpha constant. Recommended = 1.0.
+            </summary>
+        </member>
+        <member name="F:AD.PartialEquilibriumApi.Simplex.Contraction">
+            <summary>
+            The beta constant. Recommend = 0.5.
+            </summary>
+        </member>
+        <member name="F:AD.PartialEquilibriumApi.Simplex.Expansion">
+            <summary>
+            The gamma constant. Recommended = 2.0.
+            </summary>
+        </member>
+        <member name="F:AD.PartialEquilibriumApi.Simplex.Shrink">
+            <summary>
+            Controls how quickly the simplex can shrink.
+            </summary>
+        </member>
+        <member name="P:AD.PartialEquilibriumApi.Simplex.Precision">
+            <summary>
+            The numerical precision used for floating poing comparisons. Initially set equal to 1e-15.
+            Increasing the numerical precision may help when the search space is complex, or corner solutions may exist.
+            </summary>
+        </member>
         <member name="P:AD.PartialEquilibriumApi.Simplex.Dimensions">
             <summary>
             The dimensions of the simplex. Equal to the length of the argument vectors.
             </summary>
         </member>
-        <member name="P:AD.PartialEquilibriumApi.Simplex.ObjectiveFunction">
-            <summary>
-            The objective function.
-            </summary>
-        </member>
         <member name="P:AD.PartialEquilibriumApi.Simplex.Iterations">
             <summary>
             The number of iterations to attempt.
-            </summary>
-        </member>
-        <member name="P:AD.PartialEquilibriumApi.Simplex.NumberOfSolutions">
-            <summary>
-            The number of solutions to employ. Equal to the number of vertices.
-            </summary>
-        </member>
-        <member name="P:AD.PartialEquilibriumApi.Simplex.LastIndex">
-            <summary>
-            Equal to NumberOfSolutions - 1.
             </summary>
         </member>
         <member name="P:AD.PartialEquilibriumApi.Simplex.LowerBound">
@@ -388,22 +406,12 @@
             </summary>
             <param name="index">The solution index.</param>
         </member>
-        <member name="F:AD.PartialEquilibriumApi.Simplex.Reflection">
+        <member name="P:AD.PartialEquilibriumApi.Simplex.ObjectiveFunction">
             <summary>
-            The alpha constant.
+            The objective function.
             </summary>
         </member>
-        <member name="F:AD.PartialEquilibriumApi.Simplex.Contraction">
-            <summary>
-            The beta constant.
-            </summary>
-        </member>
-        <member name="F:AD.PartialEquilibriumApi.Simplex.Expansion">
-            <summary>
-            The gamma constant.
-            </summary>
-        </member>
-        <member name="F:AD.PartialEquilibriumApi.Simplex.Random">
+        <member name="P:AD.PartialEquilibriumApi.Simplex.RandomGenerator">
             <summary>
             Random number generator.
             </summary>
@@ -413,7 +421,7 @@
             Set this property to the standard output for progress reporting.
             </summary>
         </member>
-        <member name="M:AD.PartialEquilibriumApi.Simplex.#ctor(System.Func{System.Double[],System.Double},System.Double,System.Double,System.Int32,System.Int32,System.Int32,System.IO.TextWriter)">
+        <member name="M:AD.PartialEquilibriumApi.Simplex.#ctor(System.Func{System.Double[],System.Double},System.Double,System.Double,System.Int32,System.Int32,System.Nullable{System.Int32},System.IO.TextWriter)">
             <summary>
             Creates a simplex with the given parameters.
             </summary>
@@ -421,12 +429,12 @@
             <param name="lowerBound">The lower bound of the search space. Must be less than or equal to the upper bound.</param>
             <param name="upperBound">The upper bound of the search space. Must be greater than or equal to the lower bound.</param>
             <param name="dimensions">The length of the argument vector.</param>
-            <param name="numberOfSolutions">The number of <see cref="T:AD.PartialEquilibriumApi.Solution"/> objects to use in the <see cref="T:AD.PartialEquilibriumApi.Simplex"/>. Must be greater than or equal to the dimensions.</param>
             <param name="iterations">The number of iterations to attempt. Must be greater than zero.</param>
+            <param name="seed">A seed value for the internal random number generator.</param>
             <param name="textWriter">Set this property to the standard output for progress reporting.</param>
             <exception cref="T:System.ArgumentOutOfRangeException"/>
         </member>
-        <member name="M:AD.PartialEquilibriumApi.Simplex.#ctor(System.Func{System.Double[],System.Double},System.Double,System.Double,System.Int32,System.IO.TextWriter)">
+        <member name="M:AD.PartialEquilibriumApi.Simplex.#ctor(System.Func{System.Double[],System.Double},System.Double,System.Double,System.Int32,System.Nullable{System.Int32},System.IO.TextWriter)">
             <summary>
             Creates a simplex with the given parameters.
             </summary>
@@ -434,6 +442,7 @@
             <param name="lowerBound">The lower bound of the search space. Must be less than or equal to the upper bound.</param>
             <param name="upperBound">The upper bound of the search space. Must be greater than or equal to the lower bound.</param>
             <param name="dimensions">The length of the argument vector.</param>
+            <param name="seed">A seed value for the internal random number generator.</param>
             <param name="textWriter">Set this property to the standard output for progress reporting. If null, a <see cref="T:System.IO.StringWriter"/> is initialized.</param>
             <exception cref="T:System.ArgumentOutOfRangeException"/>
         </member>
@@ -458,7 +467,7 @@
             The function result.
             </summary>
         </member>
-        <member name="M:AD.PartialEquilibriumApi.Solution.#ctor(System.Double,System.Double[])">
+        <member name="M:AD.PartialEquilibriumApi.Solution.#ctor(System.Double,System.Collections.Generic.IReadOnlyList{System.Double})">
             <summary>
             Creates a solution given an argument vector and value.
             </summary>
@@ -496,26 +505,6 @@
             True if the value of the left solution is greater than or equal to the value of the right solution.
             </summary>
         </member>
-        <member name="M:AD.PartialEquilibriumApi.Solution.op_LessThan(AD.PartialEquilibriumApi.Solution,AD.PartialEquilibriumApi.Simplex)">
-            <summary>
-            True if the value of the solution is less than any of the solutions in the <see cref="T:AD.PartialEquilibriumApi.Simplex"/>.
-            </summary>
-        </member>
-        <member name="M:AD.PartialEquilibriumApi.Solution.op_GreaterThan(AD.PartialEquilibriumApi.Solution,AD.PartialEquilibriumApi.Simplex)">
-            <summary>
-            True if the value of the solution is greater than any of the solutions in the <see cref="T:AD.PartialEquilibriumApi.Simplex"/>.
-            </summary>
-        </member>
-        <member name="M:AD.PartialEquilibriumApi.Solution.op_LessThanOrEqual(AD.PartialEquilibriumApi.Solution,AD.PartialEquilibriumApi.Simplex)">
-            <summary>
-            True if the value of the solution is less than or equal to any of the solutions in the <see cref="T:AD.PartialEquilibriumApi.Simplex"/>.
-            </summary>
-        </member>
-        <member name="M:AD.PartialEquilibriumApi.Solution.op_GreaterThanOrEqual(AD.PartialEquilibriumApi.Solution,AD.PartialEquilibriumApi.Simplex)">
-            <summary>
-            True if the value of the solution is greater than or equal to any of the solutions in the <see cref="T:AD.PartialEquilibriumApi.Simplex"/>.
-            </summary>
-        </member>
         <member name="M:AD.PartialEquilibriumApi.Solution.Equals(AD.PartialEquilibriumApi.Solution)">
             <summary>
             True if two solutions have the same Vector and Value.
@@ -532,25 +521,18 @@
             </summary>
             <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
         </member>
-        <member name="T:AD.PartialEquilibriumApi.CalculateConsumerPriceIndexExtensions">
+        <member name="T:AD.PartialEquilibriumApi.ObjectiveFunctionFactory">
             <summary>
-            Extension methods to calculate prices for markets described by XML trees.
+            Factory class providing methods that aggregate model values into a single objective value.
             </summary>
         </member>
-        <member name="M:AD.PartialEquilibriumApi.CalculateConsumerPriceIndexExtensions.ConsumerPriceIndex(System.Xml.Linq.XElement)">
+        <member name="M:AD.PartialEquilibriumApi.ObjectiveFunctionFactory.Default(System.Xml.Linq.XElement)">
             <summary>
-            Returns the value of the ConsumerPriceIndex attribute.
+            Calculates an objective value as:
+            model.DescendantsAndSelf().Sum(x => Math.Abs(x.MarketEquilibrium()) * x.AncestorsAndSelf().Count());
             </summary>
-            <param name="market">An <see cref="T:System.Xml.Linq.XElement"/> describing a market.</param>
-            <returns>The value set by the user to the "ConsumerPriceIndex" attribute.</returns>
-        </member>
-        <member name="M:AD.PartialEquilibriumApi.CalculateConsumerPriceIndexExtensions.CalculateConsumerPriceIndex(System.Xml.Linq.XElement)">
-            <summary>
-            Sets the ConsumerPriceIndex attribute by aggregating the price indices of itself or any sub-markets.
-            Result = [Σ marketShare[i] * (consumerPrice[i] ^ (1 - elasticityOfSubstitution[i])] ^ [1 / (1 - elasticityOfSubstitution)]
-            </summary>
-            <param name="market">An <see cref="T:System.Xml.Linq.XElement"/> describing a market.</param>
-            <returns>A reference to the existing <see cref="T:System.Xml.Linq.XElement"/>. This is returned for use with fluent syntax calls.</returns>
+            <param name="model">An <see cref="T:System.Xml.Linq.XElement"/> describing a model.</param>
+            <returns>A double value that when minimized, optimizes the model.</returns>
         </member>
         <member name="T:AD.PartialEquilibriumApi.ShockPriceExtensions">
             <summary>
@@ -564,18 +546,12 @@
             <param name="element">The source element.</param>
             <returns>The ConsumerPrice modified by the shock.</returns>
         </member>
-        <member name="M:AD.PartialEquilibriumApi.ShockPriceExtensions.ShockProducerPrice(System.Xml.Linq.XElement)">
+        <member name="M:AD.PartialEquilibriumApi.ShockPriceExtensions.ShockProducerPrices(System.Xml.Linq.XElement)">
             <summary>
-            Sets the ProducerPrice attribute = ConsumerPrice / (1 + Shock)
+            Sets each ProducerPrice attribute on descendant <see cref="T:System.Xml.Linq.XElement"/> objects in reverse document order.
+            Result = ConsumerPrice / (1 + Shock)
             </summary>
-            <param name="element">The element to shock.</param>
-            <returns>A reference to the existing <see cref="T:System.Xml.Linq.XElement"/>. This is returned for use with fluent syntax calls.</returns>
-        </member>
-        <member name="M:AD.PartialEquilibriumApi.ShockPriceExtensions.ShockAllProducerPrices(System.Xml.Linq.XElement)">
-            <summary>
-            Sets each ProducerPrice attribute in reverse document order = ConsumerPrice / (1 + Shock)
-            </summary>
-            <param name="element">The root element.</param>
+            <param name="model">The model to shock.</param>
             <returns>A reference to the existing <see cref="T:System.Xml.Linq.XElement"/>. This is returned for use with fluent syntax calls.</returns>
         </member>
         <member name="T:AD.PartialEquilibriumApi.ShockExtensions">

@@ -46,8 +46,8 @@
       <HintPath>..\packages\AD.IO.1.1.0.10\lib\net461\AD.IO.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="AD.PartialEquilibriumApi, Version=1.1.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AD.PartialEquilibriumApi.1.1.0.1\lib\net461\AD.PartialEquilibriumApi.dll</HintPath>
+    <Reference Include="AD.PartialEquilibriumApi, Version=1.1.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AD.PartialEquilibriumApi.1.1.0.2\lib\net461\AD.PartialEquilibriumApi.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="AD.Xml, Version=1.1.0.7, Culture=neutral, processorArchitecture=MSIL">
@@ -87,6 +87,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="src\Browser.cs" />
+    <Compile Include="src\BuildGrid.cs" />
     <Compile Include="src\Example.cs" />
     <Compile Include="src\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

@@ -3,11 +3,25 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:desktop="clr-namespace:ExPEM.Desktop"
         mc:Ignorable="d"
         Icon="/ExPEM.Desktop;component/Resources/ExPEM_icon.ico"
         Title="MainWindow" Height="350" Width="700" UseLayoutRounding="True" SnapsToDevicePixels="True">
     <Grid>
-        <DataGrid x:Name="RootDataGrid" 
-                  RowDetailsTemplate="{StaticResource ExpandableGrid}"/>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <TabControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <TabItem Header="Tree">
+                <WebBrowser x:Name="Tree" desktop:BrowserBehavior.Html="{Binding Path=HtmlText}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+            </TabItem>
+            <TabItem Header="Data">
+                <DataGrid x:Name="RootDataGrid" RowDetailsTemplate="{StaticResource ExpandableGrid}"/>
+            </TabItem>
+        </TabControl>
+        <WrapPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Button Click="OpenModelFile" Content="Model" Width="50" Height="20"/>
+        </WrapPanel>
     </Grid>
 </Window>
