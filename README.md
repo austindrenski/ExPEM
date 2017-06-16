@@ -2,6 +2,8 @@
 
 # The Extensible Partial Equilibrium Modeling Project
 
+![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/austindrenski/ExPEM?svg=true)
+
 The Extensible Partial Equilibrium Modeling (ExPEM) project aims to create a simple to use, easy to extend, and powerful application for partial equilibrium analysis. 
 
 At the heart of ExPEM lies the [AD.PartialEquilibriumApi](https://github.com/austindrenski/AD.PartialEquilibriumApi)
