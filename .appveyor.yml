@@ -1,5 +1,5 @@
 before_build:
-  - cmd: nuget restore ExPEM\ExPEM.sln
+  - cmd: nuget restore ExPEM.sln
 
 configuration: 
   - Release
